@@ -1,0 +1,149 @@
+body{
+    background: #E1722D;
+}
+
+#sidebar {
+    width: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    transition: all 0.3s;
+    left: 3%;
+    top: 5%;
+    height: 50rem;
+    min-height: 70vh;
+    max-height: 90vh;
+    border-radius: 15px;
+}
+
+#sidebar .sidebar-header {
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+#sidebar ul.components {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#sidebar ul li {
+    padding: 10px;
+    font-size: 2em;
+    display: block;
+    padding: 5px 5px 5px 5px;
+}
+
+#sidebar ul li.active {
+    background: #6c757d;
+    border-radius: 15px;
+}
+
+.icon-sidebar{
+    color: #07D98C;
+    width: 35px;
+}
+
+#sidebar ul li a {
+    color: #000;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li.active > a > i{
+    color: #07D98C;
+}
+
+.login-card{
+    border-radius: 30px;
+    min-height: 50vh;
+    top: 30%;
+    background: #f8f9fa;
+    box-shadow: #46240c 10px 10px 10px;
+}
+
+.input-login{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #000;
+    width: 18rem;
+    background-color: transparent;
+}
+
+.container-main{
+    max-width: 70%;
+    padding: 0 0 0 0;
+    margin: 0 20vh;
+    margin-right: 0;
+}
+
+.title-app{
+    margin-left: 1rem;
+    color: #0D0D0D;
+    font-weight: 600;
+}
+
+.icon-dashboard{
+    background: rgba(33, 37, 41, .7);
+    height: fit-content;
+    width: auto;
+}
+
+.icon-dashboard > h1 {
+    color: white;
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.main-card{
+    border-radius: 10px;
+    min-width: 80vh;
+    background: #f8f9fa;
+    box-shadow: #46240c 10px 10px 10px;
+}
+
+.input-login:focus{
+    outline: none;
+}
+
+.submit-btn{
+    border-radius: 20px;
+    width: 15rem;
+    height: 2.8rem;
+    background: #0D0D0D;
+    color: white;
+}
+
+.submit-btn:hover{
+    background: #6c757d;
+    color: white;
+}
+
+.navbar{
+    background: #0D0D0D !important;
+    text-decoration: white;
+}
+
+a{
+    color: white !important;
+}
+
+.icons-dashboard{
+    width: 4rem;
+    padding-top: 1.6rem;
+}
+
+.content-layout{
+    background: rgba(33, 37, 41, .7);
+    height:78vh;
+}
