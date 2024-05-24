@@ -35,4 +35,11 @@ class Produto extends Model
         return $this->hasMany(SaidaEstoque::class, 'produto_id', 'produto_id');
     }
 
+    public function getQuantidadeDisponivelAttribute()
+    {
+        $quantidade_entradas = $this->entradas->sum('entradas_estoque_quantidade');
+        $quantidade_saidas = $this->saidas->sum('saidas_estoque_quantidade');
+        return $quantidade_entradas - $quantidade_saidas;
+    }
+
 }

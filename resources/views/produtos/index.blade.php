@@ -36,7 +36,7 @@
                                         <tr>
                                             <td>{{ $produto->produto_id }}</td>
                                             <td>{{ $produto->produto_nome }}</td>
-                                            <td>{{ $produto->produto_quantidade }}</td>
+                                            <td>{{ $produto->quantidade_disponivel  }}</td>
                                             <td>{{ $produto->categoria->categoria_nome }}</td>
                                             <td>
                                                 <a href="{{ route('produtos.edit', $produto->produto_id) }}" class="btn btn-primary">Editar</a>

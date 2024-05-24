@@ -36,11 +36,11 @@
                                         <tr>
                                             <td>{{ $saida->saidas_estoque_id }}</td>
                                             <td>{{ $saida->produto->produto_nome }}</td>
-                                            <td>{{ $saida->saidas_estoque_quantidade_saida }}</td>
-                                            <td>{{ date("m-d-Y", strtotime($saida->saidas_estoque_data_saida)) }}</td>
+                                            <td>{{ $saida->saidas_estoque_quantidade }}</td>
+                                            <td>{{ date("m/d/Y", strtotime($saida->saidas_estoque_data_saida)) }}</td>
                                             <td>
-                                                <a href="{{ route('saidas.edit', $saida->saida_id) }}" class="btn btn-primary">Editar</a>
-                                                <form action="{{ route('saidas.destroy', $saida->saida_id) }}" method="POST" style="display:inline-block;">
+                                                <a href="{{ route('saidas.edit', $saida->saidas_estoque_id) }}" class="btn btn-primary">Editar</a>
+                                                <form action="{{ route('saidas.destroy', $saida->saidas_estoque_id) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta saída?')">Excluir</button>

@@ -24,6 +24,7 @@ class SaidaEstoqueController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'produto_id' => 'required',
             'saidas_estoque_quantidade' => 'required|integer',
@@ -58,10 +59,12 @@ class SaidaEstoqueController extends Controller
             'produto_id' => 'required',
             'saidas_estoque_quantidade' => 'required|integer',
             'saidas_estoque_data_saida' => 'required|date',
-            'user_id' => 'required',
         ]);
 
-        $saida->update($request->all());
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        $saida->update($data);
         return redirect()->route('saidas.index')->with('success', 'Saída de estoque atualizada com sucesso.');
     }
 
