@@ -25,4 +25,9 @@ class EntradaEstoque extends Model
     {
         return $this->hasOne(Produto::class, 'produto_id', 'produto_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

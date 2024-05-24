@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('produto_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->foreign('produto_id')->references('produto_id')->on('produtos');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

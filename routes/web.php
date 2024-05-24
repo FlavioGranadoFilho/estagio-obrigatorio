@@ -6,13 +6,13 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\EntradaEstoqueController;
 use App\Http\Controllers\SaidaEstoqueController;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::middleware('auth')->get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('categorias', CategoriaController::class);
-Route::resource('produtos', ProdutoController::class);
-Route::resource('entradas', EntradaEstoqueController::class);
-Route::resource('saidas', SaidaEstoqueController::class);
+Route::middleware('auth')->resource('categorias', CategoriaController::class);
+Route::middleware('auth')->resource('produtos', ProdutoController::class);
+Route::middleware('auth')->resource('entradas', EntradaEstoqueController::class);
+Route::middleware('auth')->resource('saidas', SaidaEstoqueController::class);

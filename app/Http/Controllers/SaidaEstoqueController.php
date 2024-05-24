@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\SaidaEstoque;
 use App\Models\Produto;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SaidaEstoqueController extends Controller
 {
     public function index()
     {
-        $saidas = SaidaEstoque::with('produto', 'user')->get();
+        $saidas = SaidaEstoque::with('produto', 'user')->paginate(7);
         return view('saidas.index', compact('saidas'));
     }
 
@@ -26,12 +26,17 @@ class SaidaEstoqueController extends Controller
     {
         $request->validate([
             'produto_id' => 'required',
-            'quantidade' => 'required|integer',
-            'data_saida' => 'required|date',
-            'user_id' => 'required',
+            'saidas_estoque_quantidade' => 'required|integer',
+            'saidas_estoque_data_saida' => 'required|date',
         ]);
 
-        SaidaEstoque::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        if(!SaidaEstoque::create($data)){
+            return redirect()->back()->with('error', 'Erro ao registrar saída de estoque.');
+        }
+
         return redirect()->route('saidas.index')->with('success', 'Saída de estoque registrada com sucesso.');
     }
 
@@ -51,8 +56,8 @@ class SaidaEstoqueController extends Controller
     {
         $request->validate([
             'produto_id' => 'required',
-            'quantidade' => 'required|integer',
-            'data_saida' => 'required|date',
+            'saidas_estoque_quantidade' => 'required|integer',
+            'saidas_estoque_data_saida' => 'required|date',
             'user_id' => 'required',
         ]);
 

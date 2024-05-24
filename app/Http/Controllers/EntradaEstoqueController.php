@@ -11,7 +11,8 @@ class EntradaEstoqueController extends Controller
 {
     public function index()
     {
-        $entradas = EntradaEstoque::with('produto', 'user')->get();
+        $entradas = EntradaEstoque::with('produto', 'user')->paginate(7);
+        // dd($entradas);
         return view('entradas.index', compact('entradas'));
     }
 
@@ -26,12 +27,14 @@ class EntradaEstoqueController extends Controller
     {
         $request->validate([
             'produto_id' => 'required',
-            'quantidade' => 'required|integer',
-            'data_entrada' => 'required|date',
-            'user_id' => 'required',
+            'entradas_estoque_quantidade' => 'required|integer',
+            'entradas_estoque_data_entrada' => 'required|date',
         ]);
 
-        EntradaEstoque::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        EntradaEstoque::create($data);
         return redirect()->route('entradas.index')->with('success', 'Entrada de estoque registrada com sucesso.');
     }
 
@@ -51,12 +54,14 @@ class EntradaEstoqueController extends Controller
     {
         $request->validate([
             'produto_id' => 'required',
-            'quantidade' => 'required|integer',
-            'data_entrada' => 'required|date',
-            'user_id' => 'required',
+            'entradas_estoque_quantidade' => 'required|integer',
+            'entradas_estoque_data_entrada' => 'required|date',
         ]);
 
-        $entrada->update($request->all());
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;  
+
+        $entrada->update($data);
         return redirect()->route('entradas.index')->with('success', 'Entrada de estoque atualizada com sucesso.');
     }
 

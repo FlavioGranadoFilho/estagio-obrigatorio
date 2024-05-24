@@ -10,12 +10,12 @@
             <div class="card content-layout">
                 <div class="card-body">
                     <div class="row mb-3 justify-content-center">
-                        <h2 class="text-white py-3 px-5">Categorias</h2>
+                        <h2 class="text-white py-3 px-5">Saídas</h2>
                     </div>
 
                     <div class="row mb-3 justify-content-center">
                         <div class="col-md-12 text-end">
-                            <a href="{{ route('categorias.create') }}" class="btn submit-btn mb-3 mt-3">Adicionar Nova Categoria</a>
+                            <a href="{{ route('saidas.create') }}" class="btn submit-btn mb-3 mt-3">Adicionar Nova Saída</a>
                         </div>
                     </div>
 
@@ -25,21 +25,25 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Nome da Categoria</th>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Data de Saída</th>
                                         <th scope="col">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($categorias as $categoria)
+                                    @foreach($saidas as $saida)
                                         <tr>
-                                            <td>{{ $categoria->categoria_id }}</td>
-                                            <td>{{ $categoria->categoria_nome }}</td>
+                                            <td>{{ $saida->saidas_estoque_id }}</td>
+                                            <td>{{ $saida->produto->produto_nome }}</td>
+                                            <td>{{ $saida->saidas_estoque_quantidade_saida }}</td>
+                                            <td>{{ date("m-d-Y", strtotime($saida->saidas_estoque_data_saida)) }}</td>
                                             <td>
-                                                <a href="{{ route('categorias.edit', $categoria->categoria_id) }}" class="btn btn-primary">Editar</a>
-                                                <form action="{{ route('categorias.destroy', $categoria->categoria_id) }}" method="POST" style="display:inline-block;">
+                                                <a href="{{ route('saidas.edit', $saida->saida_id) }}" class="btn btn-primary">Editar</a>
+                                                <form action="{{ route('saidas.destroy', $saida->saida_id) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-dark" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">Excluir</button>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta saída?')">Excluir</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -55,7 +59,7 @@
                     </div>
                     <div class="row mb-3 justify-content-center">
                         <div class="col-md-12">
-                            {{ $categorias->links('vendor.pagination.bootstrap-5') }} <!-- Especifica o template customizado -->
+                            {{ $saidas->links('vendor.pagination.bootstrap-5') }} <!-- Especifica o template customizado -->
                         </div>
                     </div>
                 </div>

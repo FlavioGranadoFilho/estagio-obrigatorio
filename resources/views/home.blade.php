@@ -7,7 +7,7 @@
     </div>
     <div class="row justify-content-center" style="padding-left: 3rem">
         <div class="col-md-3">
-            <a href="#" style="text-decoration: none">
+            <a href="/produtos" style="text-decoration: none">
                 <div class="card icon-dashboard">
                     <h1>Itens em estoque</h1>
                     <div class="text-end py-3 px-3">
@@ -17,7 +17,7 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a href="#" style="text-decoration: none">
+            <a href="/entradas" style="text-decoration: none">
                 <div class="card icon-dashboard">
                     <h1>Entradas</h1>
                     <div class="text-end py-3 px-3">
@@ -27,7 +27,7 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a href="#" style="text-decoration: none">
+            <a href="/saidas" style="text-decoration: none">
                 <div class="card icon-dashboard">
                     <h1>Saidas</h1>
                     <div class="text-end py-3 px-3">
@@ -37,9 +37,9 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a href="#" style="text-decoration: none">
+            <a href="/categorias" style="text-decoration: none">
                 <div class="card icon-dashboard">
-                    <h1>Filtros</h1>
+                    <h1>Categorias</h1>
                     <div class="text-end py-3 px-3">
                         <img src="{{ asset('imgs/icon-produtos.png') }}" alt="produtos" class="img-fluid icons-dashboard mt-3">
                     </div>

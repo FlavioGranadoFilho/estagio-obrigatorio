@@ -10,7 +10,8 @@ class ProdutoController extends Controller
 {
     public function index()
     {
-        $produtos = Produto::with('categoria')->get();
+        $produtos = Produto::with('categoria')->paginate(7);
+        // dd($produtos->count());
         return view('produtos.index', compact('produtos'));
     }
 
@@ -22,7 +23,6 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'produto_nome' => 'required',
             'categoria_id' => 'required',
@@ -49,7 +49,7 @@ class ProdutoController extends Controller
         $request->validate([
             'nome_produto' => 'required',
             'categoria_id' => 'required',
-            'quantidade_estoque' => 'required|integer',
+            // 'quantidade_estoque' => 'required|integer',
         ]);
 
         $produto->update($request->all());

@@ -57,7 +57,11 @@
                             @endif
                         </div>
                     </div>
-
+                    <div class="row mb-3 justify-content-center">
+                        <div class="col-md-12">
+                            {{ $produtos->links('vendor.pagination.bootstrap-5') }} <!-- Especifica o template customizado -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
