@@ -42,4 +42,9 @@ class Produto extends Model
         return $quantidade_entradas - $quantidade_saidas;
     }
 
+    public function podeSair($quantidade)
+    {
+        return $this->quantidade_disponivel >= $quantidade;
+    }
+
 }

@@ -14,6 +14,15 @@
                         @method('PUT')
 
                         <div class="row mb-3 justify-content-center">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @elseif(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <h2 class="text-white py-3 px-5">Editar Produto</h2>
 
                             <div class="col-md-6 text-center mt-5">
@@ -24,15 +33,6 @@
                                     </span>
                                 @enderror
                             </div>
-{{-- 
-                            <div class="col-md-6 text-center mt-5">
-                                <input id="quantidade" type="number" class="input-login mt-3 @error('quantidade') is-invalid @enderror" name="quantidade" value="{{ old('quantidade', $produto->quantidade) }}" required autocomplete="quantidade" placeholder="Quantidade">
-                                @error('quantidade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div> --}}
 
                             <div class="col-md-6 text-center mt-5">
                                 <select id="categoria_id" class="input-login mt-3 @error('categoria_id') is-invalid @enderror" name="categoria_id" required>

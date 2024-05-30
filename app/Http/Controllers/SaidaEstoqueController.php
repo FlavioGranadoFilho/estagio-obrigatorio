@@ -32,13 +32,20 @@ class SaidaEstoqueController extends Controller
         ]);
 
         $data = $request->all();
-        $data['user_id'] = auth()->user()->id;
 
-        if(!SaidaEstoque::create($data)){
-            return redirect()->back()->with('error', 'Erro ao registrar saída de estoque.');
+        $produto = Produto::find($request->produto_id);
+
+        if ($produto->podeSair($data['saidas_estoque_quantidade'])) {
+            $data['user_id'] = auth()->user()->id;
+
+            if(!SaidaEstoque::create($data)){
+                return redirect()->back()->with('error', 'Erro ao registrar saída de estoque.');
+            }
+    
+            return redirect()->route('saidas.index')->with('success', 'Saída de estoque registrada com sucesso.');
+        }else{
+            return redirect()->back()->with('error', 'Quantidade indisponível em estoque.');
         }
-
-        return redirect()->route('saidas.index')->with('success', 'Saída de estoque registrada com sucesso.');
     }
 
     public function show(SaidaEstoque $saida)
@@ -62,6 +69,13 @@ class SaidaEstoqueController extends Controller
         ]);
 
         $data = $request->all();
+
+        $produto = Produto::find($request->produto_id);
+        
+        if (!$produto->podeSair($request->quantidade)) {
+            return redirect()->back()->with('error', 'Quantidade indisponível em estoque.');
+        }
+
         $data['user_id'] = auth()->user()->id;
 
         $saida->update($data);

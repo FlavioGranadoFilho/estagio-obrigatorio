@@ -144,6 +144,7 @@ a{
 }
 
 .content-layout{
-    background: rgba(33, 37, 41, .7);
-    height:78vh;
+    background: rgba(33, 37, 41, 1);
+    height: fit-content;
+    min-height:78vh;
 }

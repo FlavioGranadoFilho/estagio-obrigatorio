@@ -14,6 +14,15 @@
                         @method('PUT')
 
                         <div class="row mb-3 justify-content-center">
+                            @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @elseif(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                             <h2 class="text-white py-3 px-5">Editar Saída : {{$saida->saidas_estoque_id}}</h2>
 
                             <div class="col-md-6 text-center mt-5">

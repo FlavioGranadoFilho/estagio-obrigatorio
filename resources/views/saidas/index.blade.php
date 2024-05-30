@@ -37,7 +37,7 @@
                                             <td>{{ $saida->saidas_estoque_id }}</td>
                                             <td>{{ $saida->produto->produto_nome }}</td>
                                             <td>{{ $saida->saidas_estoque_quantidade }}</td>
-                                            <td>{{ date("m/d/Y", strtotime($saida->saidas_estoque_data_saida)) }}</td>
+                                            <td>{{ date("d/m/Y", strtotime($saida->saidas_estoque_data_saida)) }}</td>
                                             <td>
                                                 <a href="{{ route('saidas.edit', $saida->saidas_estoque_id) }}" class="btn btn-primary">Editar</a>
                                                 <form action="{{ route('saidas.destroy', $saida->saidas_estoque_id) }}" method="POST" style="display:inline-block;">
@@ -53,6 +53,10 @@
                             @if(session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
+                                </div>
+                            @elseif(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
                                 </div>
                             @endif
                         </div>
