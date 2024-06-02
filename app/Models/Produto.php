@@ -17,7 +17,8 @@ class Produto extends Model
         'produto_nome',
         'produto_descricao',
         'produto_quantidade_estoque',
-        'categoria_id'
+        'categoria_id',
+        'produto_serial_number',
     ];
 
     public function categoria()

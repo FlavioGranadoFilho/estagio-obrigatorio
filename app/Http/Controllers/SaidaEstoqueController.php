@@ -71,15 +71,19 @@ class SaidaEstoqueController extends Controller
         $data = $request->all();
 
         $produto = Produto::find($request->produto_id);
-        
-        if (!$produto->podeSair($request->quantidade)) {
+
+        $diferenca = $request->saidas_estoque_quantidade - $saida->saidas_estoque_quantidade;
+
+        if ($produto->podeSair($diferenca)) {
+            $data['user_id'] = auth()->user()->id;
+            if($saida->update($data)){
+                return redirect()->route('saidas.index')->with('success', 'Saída de estoque atualizada com sucesso.');
+            }else{
+                return redirect()->route('saidas.index')->with('error', 'Erro ao atualizar saída de estoque.');
+            }
+        }else{	
             return redirect()->back()->with('error', 'Quantidade indisponível em estoque.');
         }
-
-        $data['user_id'] = auth()->user()->id;
-
-        $saida->update($data);
-        return redirect()->route('saidas.index')->with('success', 'Saída de estoque atualizada com sucesso.');
     }
 
     public function destroy(SaidaEstoque $saida)

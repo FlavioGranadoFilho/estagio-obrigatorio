@@ -59,10 +59,26 @@ class EntradaEstoqueController extends Controller
         ]);
 
         $data = $request->all();
-        $data['user_id'] = auth()->user()->id;  
 
-        $entrada->update($data);
-        return redirect()->route('entradas.index')->with('success', 'Entrada de estoque atualizada com sucesso.');
+        $novaQuantidade = $data['entradas_estoque_quantidade'];
+        $quantidadeAtual = $entrada->entradas_estoque_quantidade;
+        $produto = $entrada->produto;
+
+        $diferenca = $novaQuantidade - $quantidadeAtual;
+
+        if ($diferenca < 0) {
+            if ($produto->podeSair(abs($diferenca))) {
+                $data['user_id'] = auth()->user()->id;  
+                $entrada->update($data);
+                return redirect()->route('entradas.index')->with('success', 'Entrada de estoque atualizada com sucesso.');
+            } else {
+                return redirect()->back()->with('error', 'Quantidade insuficiente em estoque.');
+            }
+        } else {
+            $data['user_id'] = auth()->user()->id;  
+            $entrada->update($data);
+            return redirect()->route('entradas.index')->with('success', 'Entrada de estoque atualizada com sucesso.');
+        }
     }
 
     public function destroy(EntradaEstoque $entrada)

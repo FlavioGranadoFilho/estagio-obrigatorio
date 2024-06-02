@@ -12,7 +12,7 @@
                     <form method="POST" action="{{ route('produtos.store') }}">
                         @csrf
 
-                        <div class="row mb-3 justify-content-center">
+                        <div class="row mb-4 justify-content-center">
                             <div class="row mb-3 justify-content-center">
                                 @if(session('success'))
                                 <div class="alert alert-success">
@@ -42,6 +42,15 @@
                                     @endforeach
                                 </select>
                                 @error('categoria_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6 text-center mt-5">
+                                <input id="produto_serial_number" type="text" class="input-login mt-3 @error('produto_serial_number') is-invalid @enderror" name="produto_serial_number" value="{{ old('produto_serial_number') }}" required autocomplete="produto_serial_number" placeholder="S/N">
+                                @error('produto_serial_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

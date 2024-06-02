@@ -28,6 +28,7 @@
                                         <th scope="col">Nome do Produto</th>
                                         <th scope="col">Quantidade</th>
                                         <th scope="col">Categoria</th>
+                                        <th scope="col">S/N</th>
                                         <th scope="col">Ações</th>
                                     </tr>
                                 </thead>
@@ -38,6 +39,7 @@
                                             <td>{{ $produto->produto_nome }}</td>
                                             <td>{{ $produto->quantidade_disponivel  }}</td>
                                             <td>{{ $produto->categoria->categoria_nome }}</td>
+                                            <td>{{ $produto->produto_serial_number }}</td>
                                             <td>
                                                 <a href="{{ route('produtos.edit', $produto->produto_id) }}" class="btn btn-primary">Editar</a>
                                                 <form action="{{ route('produtos.destroy', $produto->produto_id) }}" method="POST" style="display:inline-block;">
